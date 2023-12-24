@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sytle.css">
+    <script src="script.js"></script>
+    <style>
+        /* sadece tipi text olanlar için uygulanan css */
+        /* input[type=text]{
+            width: 100%;
+        } */
+
+        /* sadece tipi password olanlar için uygulanan css */
+        /* input[type=password]{
+            width: 100%;
+        } */
+
+        /* aynı anda verilmek istenirse aşağıdaki gibi */
+        input[type=text],input[type=password]{
+            width: 100%;
+            padding: 10px;
+            border: 1px solid green;
+            border-radius: 3px;
+            /* alttan kırmızı çizgi yap */
+            /* border-bottom: 3px solid red; */
+            /* inpu içi yazıları beyaz yapar */
+            color: white;
+            background-color:#3CBC8D;
+        }
+        input[type=text]:focus,input[type=password]:focus{
+            background-color:lightblue;
+        }
+        
+        .myClass{
+            color: red;
+            background-color: blue;
+        }
+        p.someClass{
+            color: white;
+            background-color: blue;
+        }
+        #email{
+            background-color: black;
+        }
+
+    </style>
+</head>
+
+<body>
+Ad : <input type="text">
+Email : <input id="email" type="text">
+Şifre : <input type="password">
+<input type="submit">
+
+<h1 class="myClass">Müslüm Han EROL</h1>
+<p class="someClass">Bu bir paragraf.</p>
+
+
+
+</body>
+
+
+
+</html>

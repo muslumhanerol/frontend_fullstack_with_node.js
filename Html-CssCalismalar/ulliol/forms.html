@@ -1,0 +1,34 @@
+<form action="formating.html">
+    <!-- kullanıcıdan bilgi alma -->
+<label>First Name :</label> 
+<input name="firstName" type="text" required/>
+<br>
+<!-- tipi password olunca yazılan nokta nokta görünür -->
+<label>Password :</label> 
+<input name="password" type="password" required/>
+<br>
+<!-- select açılır kapanır seçici -->
+<label>Cinsiyet</label>
+<select name="gender">
+    <option>Erkek</option>
+    <option>Kadın</option>
+</select>
+<br>
+<label>En sevdiğiniz araba</label>
+<!-- size 2 demek seçenekleri iki iki gösterir//multiple ctrl tuşuyla çoklu seçim yaptırır -->
+<select name="car" size="2" multiple>
+    <option>Mercedes</option>
+    <option>Volvo</option>
+    <option>TOGG</option>    
+    <option>Audi</option>
+</select>
+<br>
+<label>Hakkınızda :</label>
+<textarea name="biography" rows="4" cols="30"></textarea>
+<br>
+<!-- submit form action una işler//normalde value verilmez ise üstünde gönder yazar. value ile istediğini yazar -->
+<input type="submit" value="Kaydet"/>
+<br>
+<button onClick="alert('Kaydete Basıldı')">Kaydet</button>
+</form>
+
