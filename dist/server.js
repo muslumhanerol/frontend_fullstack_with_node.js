@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -314,7 +323,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ROUTER (Index.html Anasayfa)
 // 📌 Ana Sayfa (`index.html`) Yönlendirmesi
-// http://localhost:1111/
+// response.sendFile => Static HTML dosyasını istemciye gönderirir.
 // app.get("/", (request: any, response: any) => {
 //   response.sendFile(path.join(__dirname, "public", "index.html"));
 // });
@@ -322,34 +331,90 @@ app.use(express.static(path.join(__dirname, "../public")));
 // app.get("/", (request: any, response: any) => {
 //    response.render("index")
 // });
-// Blog post örnek verileri (normalde veritabanından alınır)
-const blogPosts = [
+// 1.YOL (dummy Code)
+// blogPosts (Dummy Code )
+const dummyCodeBlogPosts = [
     {
         id: 1,
-        title: "Node.js ile Web Geliştirme",
-        content: "Node.js ile backend geliştirme nasıl yapılır?",
+        title: "Blog Post 1",
+        content: "Bu bir blog postudur",
+        //image: "https://via.placeholder.com/150"
         image: "/images/kart5.jpg",
+        date: new Date().getUTCDate(),
     },
     {
         id: 2,
-        title: "Express.js Framework’ü",
-        content: "Express.js ile nasıl API oluşturulur?",
+        title: "Blog Post 2",
+        content: "Bu bir blog postudur",
+        //image: "https://via.placeholder.com/150"
         image: "/images/kart5.jpg",
+        createdAt: new Date().getFullYear(),
     },
     {
         id: 3,
-        title: "MongoDB ile Veri Saklama",
-        content: "MongoDB kullanarak veri nasıl saklanır?",
+        title: "Blog Post 3",
+        content: "Bu bir blog postudur",
+        //image: "https://via.placeholder.com/150"
         image: "/images/kart5.jpg",
+        createdAt: new Date().getFullYear(),
+    },
+    {
+        id: 4,
+        title: "Blog Post 4",
+        content: "Bu bir blog postudur",
+        //image: "https://via.placeholder.com/150"
+        image: "/images/kart5.jpg",
+        createdAt: new Date().getFullYear(),
+    },
+    {
+        id: 5,
+        title: "Blog Post 5",
+        content: "Bu bir blog postudur",
+        //image: "https://via.placeholder.com/150"
+        image: "/images/kart5.jpg",
+        createdAt: new Date().getFullYear(),
+    },
+    {
+        id: 6,
+        title: "Blog Post 6",
+        content: "Bu bir blog postudur",
+        //image: "https://via.placeholder.com/150"
+        image: "/images/kart5.jpg",
+        createdAt: new Date().getFullYear(),
+    },
+    {
+        id: 7,
+        title: "Blog Post 7",
+        content: "Bu bir blog postudur",
+        //image: "https://via.placeholder.com/150"
+        image: "/images/kart5.jpg",
+        createdAt: new Date().getFullYear(),
     },
 ];
-// Anasayfa route'u: index.ejs'yi render eder
-app.get("/", (request, response) => {
-    response.render("index", {
-        title: "Blog Sayfası",
-        blogPosts: blogPosts, // blogPosts değişkenini EJS şablonuna gönderiyoruz
-    });
+// 2.YOL (db.json)
+// Json veritabanında dosyasını oku
+// JSON veritabanı dosyasını oku
+const dbFilePath = path.join(__dirname, "../db.json");
+const readDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const data = yield fs.promises.readFile(dbFilePath, "utf-8");
+        return JSON.parse(data);
+    }
+    catch (error) {
+        console.error("Veritabanı okuma hatası:", error);
+        return { blogs: [] };
+    }
 });
+// 📌 Ana Sayfa EJS (`views/index.ejs`) 
+// response.render => Dinamik HTML dosyasını EJS(şablonu motoru) dinamik içeriği istemciye gönderirir.
+app.get("/", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const db = yield readDB();
+    response.render("index", {
+        title: "😊 Full Stack Frontend Node.js Öğreniyorum-2",
+        //blogPosts: blogPosts, // blogPosts değişkenini EJS şablonuna gönderiyoruz
+        blogPosts: db.blogs,
+    });
+}));
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ROUTER (Blog.ejs Sayfası)
 // GET ROUTER (Blog Sayfası)
@@ -450,7 +515,7 @@ app.use("/blog/api", blogRouter);
 // 404 Hata sayfası
 app.use((request, response, next) => {
     // render("ErrorPage404") ==>  views/ErrorPage404.ejs
-    response.status(404).render("ErrorPage404", { url: request.originalUrl });
+    response.status(404).render("error", { url: request.originalUrl });
 });
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Windowsta 1111 portunu kapatmak

@@ -2,12 +2,13 @@
   "blogs": [
     {
       "id": 1,
-      "header": "header44",
-      "content": "content44",
-      "author": "yazar44",
-      "tags": "tags44",
-      "createdAt": "2025-03-11T23:26:20.550Z",
-      "_csrf": "XXVDRZD0-lMQgWSArxm9Asb-KL0hf9y28aYY"
+      "header": "header",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem harum perferendis maxime rerum soluta at reprehenderit possimus sint alias error repudiandae, asperiores nihil earum quas consequuntur deserunt nostrum voluptas magnam. Blanditiis quasi quae voluptatum consectetur est amet provident similique maxime deleniti, ratione, laborum corrupti ullam accusantium. Autem repellat assumenda, ut inventore dolorem voluptas",
+      "author": "author",
+      "tags": "java,c#,js,ts",
+      "category": "Spor",
+      "image": "/images/kart5.jpg",
+      "createdAt": "2025-03-14T12:20:50.437Z"
     }
   ]
 }
